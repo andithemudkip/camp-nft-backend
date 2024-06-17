@@ -1,0 +1,25 @@
+{
+    "name": "camp-nfts-backend",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "nodemon --no-deprecation index.js",
+        "start": "node index.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "axios": "^1.7.2",
+        "dotenv": "^16.4.5",
+        "express": "^4.19.2",
+        "express-rate-limit": "^7.3.1",
+        "helmet": "^7.1.0",
+        "ipfs-http-client": "^60.0.1",
+        "morgan": "^1.10.0",
+        "multer": "1.4.5-lts.1",
+        "sharp": "^0.33.4"
+    }
+}

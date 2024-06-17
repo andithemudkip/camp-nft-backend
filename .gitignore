@@ -1,0 +1,9 @@
+node_modules
+.env
+env_variables.yaml
+yarn.lock
+.VSCodeCounter
+.vscode
+.idea
+.yalc
+pnpm-lock.yaml

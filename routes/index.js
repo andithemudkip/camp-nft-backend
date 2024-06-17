@@ -15,6 +15,15 @@ module.exports = () => {
     const router = Router();
 
     router.use('/create/collectible', createLimiter, getCreateCollectibleRoutes());
+
+    const getHc = (req, res) => {
+        res.send({
+            network: process.env.NETWORK,
+            name: process.env.npm_package_name,
+            ver: process.env.npm_package_version,
+        })
+    }
+
     router.get('/', getHc);
 
     return router;

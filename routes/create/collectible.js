@@ -1,5 +1,6 @@
 const { Router } = require('express');
 const multer = require('multer');
+const cors = require('cors');
 const { generateSmallSize } = require('../../lib/resizeFile');
 const { initIpfs } = require('../../lib/IPFS');
 
@@ -25,12 +26,12 @@ const mediaUpload = multer({
 let upload = async(req, res, next) => {
     const file = req.files.fileData[0];
     try {
-        const small = await generateSmallSize(cover.buffer);
-        const res = await uploadToIPFS(small);
+        const small = await generateSmallSize(file.buffer);
+        const response = await uploadToIPFS(small);
         const metadata = {
             name: req.body.name || 'Odd Sparky',
             description: req.body.description || "",
-            image: `ipfs://${res}`,
+            image: `ipfs://${response}`,
             mimetype: file.mimetype
         }
         const meta = await uploadToIPFS(JSON.stringify(metadata));
@@ -44,6 +45,7 @@ let upload = async(req, res, next) => {
 
 module.exports = () => {
     const router = Router();
+    router.use(cors());
     router.post('/upload',
         log,
         mediaUpload.fields([{ name: 'fileData', maxCount: 1 }]),
